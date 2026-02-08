@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="meateroid"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+run/main_scene="uid://b8l2no8l3jeax"
+config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="meateroid"
 
 [physics]
 
