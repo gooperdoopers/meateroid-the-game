@@ -11,8 +11,15 @@ public partial class gridScript : Node2D
 	public Boolean isBuilding = true;
 	public Array<int> currentGridPosition;
 	[Export] public Sprite2D module;
-	public override void _Ready()
-	{
+	private void fillMatrix(){
+		
+	}
+
+	private int scanMatrix(){
+		return 0;
+	}
+
+	public override void _Ready(){
 		for (int y = 0; y < matrixSize; y++){
 			Array<int> xPlane = new Array<int>();
 			for (int x = 0; x < matrixSize; x++){
@@ -22,16 +29,36 @@ public partial class gridScript : Node2D
 		}
 
 		GD.Print(shipMatrix[5][2]);
+		shipMatrix[matrixSize/2][matrixSize/2] = 2;
+		shipMatrix[matrixSize/2][matrixSize/2+1] = 2;
+		shipMatrix[matrixSize/2+1][matrixSize/2] = 2;
+		shipMatrix[matrixSize/2+1][matrixSize/2+1] = 2;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+	public override void _Input(InputEvent @event){
+
+		if(@event is InputEventKey eventKey)
+		{
+			if (eventKey.Pressed && eventKey.Keycode == Key.B){
+            	isBuilding = !isBuilding;
+        	}
+		}
+
+		else if(@event is InputEventMouseButton mouseButton){
+			if (mouseButton.Pressed && mouseButton.ButtonIndex == MouseButton.Left && isBuilding == true){
+				
+			}
+		}
+	}
+
+	public override void _Process(double delta){
 		if(isBuilding == true){
-			Vector2 mousePosition = GetGlobalMousePosition()/gridScale;
+			Vector2 mousePosition = (GetLocalMousePosition() + new Vector2(gridScale/2,gridScale/2))/gridScale;
 			int mouseGridX = (int)Mathf.Round(mousePosition.X);
 			int mouseGridY = (int)Mathf.Round(mousePosition.Y);
-			module.Position = new Vector2((float)mouseGridX*gridScale,(float)mouseGridY*gridScale);
+			float calculateModuleX = (float)mouseGridX * gridScale - gridScale/2;
+			float calculateModuleY = (float)mouseGridY * gridScale - gridScale/2;
+			module.Position = new Vector2(calculateModuleX,calculateModuleY);
 		}
 	}
 }
