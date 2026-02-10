@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dwektj6n8yj15" path="res://icon.svg" id="1_wtdyi"]
 [ext_resource type="Script" uid="uid://b7lxvjhv4o7th" path="res://scripts/gridScript.cs" id="1_xtb1e"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xtb1e"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
 [node name="mainscene" type="Node2D" unique_id=1110227158]
 
 [node name="eater" type="Node2D" parent="." unique_id=1647354563 node_paths=PackedStringArray("module")]
@@ -23,6 +26,13 @@ texture = ExtResource("1_wtdyi")
 [node name="thrustermodule2" type="Sprite2D" parent="eater/thrustermodule" unique_id=710645545]
 position = Vector2(0, 128)
 texture = ExtResource("1_wtdyi")
+
+[node name="turretmodule" type="Node2D" parent="eater" unique_id=1363981873]
+position = Vector2(419, 17)
+metadata/blockMatrix = [[0, 0], [1, 0], [0, -1], [1, -1]]
+
+[node name="thrustermodule2" type="Sprite2D" parent="eater/turretmodule" unique_id=348311225]
+texture = SubResource("CompressedTexture2D_xtb1e")
 
 [node name="modules" type="Node2D" parent="." unique_id=633523990]
 
