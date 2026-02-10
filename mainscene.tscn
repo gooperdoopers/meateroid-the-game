@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b8l2no8l3jeax"]
+
+[ext_resource type="Texture2D" uid="uid://dwektj6n8yj15" path="res://icon.svg" id="1_wtdyi"]
+[ext_resource type="Script" uid="uid://b7lxvjhv4o7th" path="res://scripts/gridScript.cs" id="1_xtb1e"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xtb1e"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[node name="mainscene" type="Node2D" unique_id=1110227158]
+
+[node name="eater" type="Node2D" parent="." unique_id=1647354563 node_paths=PackedStringArray("module", "shipCore")]
+position = Vector2(385, 193)
+script = ExtResource("1_xtb1e")
+module = NodePath("thrustermodule")
+shipCore = NodePath("core")
+
+[node name="Sprite2D" type="Sprite2D" parent="eater" unique_id=332442079]
+position = Vector2(413, -158)
+texture = ExtResource("1_wtdyi")
+
+[node name="camera" type="Camera2D" parent="eater" unique_id=1743484181]
+
+[node name="thrustermodule" type="Sprite2D" parent="eater" unique_id=166004657]
+position = Vector2(543, 73)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wtdyi")
+
+[node name="thrustermodule2" type="Sprite2D" parent="eater/thrustermodule" unique_id=710645545]
+position = Vector2(0, 128)
+texture = ExtResource("1_wtdyi")
+
+[node name="core" type="Node2D" parent="eater" unique_id=1363981873]
+metadata/blockMatrix = [[0, 0], [1, 0], [0, -1], [1, -1]]
+
+[node name="thrustermodule2" type="Sprite2D" parent="eater/core" unique_id=348311225]
+texture = SubResource("CompressedTexture2D_xtb1e")
+
+[node name="modules" type="Node2D" parent="." unique_id=633523990]
+
+[node name="thruster" type="Node2D" parent="modules" unique_id=34506794]
+position = Vector2(923, 275)
+
+[node name="thrustermodule3" type="Sprite2D" parent="modules/thruster" unique_id=836582075]
+position = Vector2(0, -64)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wtdyi")
