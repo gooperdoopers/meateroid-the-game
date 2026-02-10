@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bp0w1xihectj5"]
+
+[ext_resource type="Script" uid="uid://bcgfqf11g6ek3" path="res://Movement.cs" id="1_6ljl2"]
+[ext_resource type="Texture2D" uid="uid://bpakn218w5aod" path="res://Meateroid-Sprites/Ship_Power.png" id="1_vcyby"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ljl2"]
+
+[node name="Node2D" type="Node2D" unique_id=1939869885]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1139810297]
+position = Vector2(504, 255)
+gravity_scale = 0.0
+script = ExtResource("1_6ljl2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1366252526]
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_6ljl2")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=1414661612]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_vcyby")
