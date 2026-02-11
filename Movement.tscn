@@ -2,21 +2,110 @@
 
 [ext_resource type="Script" uid="uid://bcgfqf11g6ek3" path="res://Movement.cs" id="1_6ljl2"]
 [ext_resource type="Texture2D" uid="uid://bpakn218w5aod" path="res://Meateroid-Sprites/Ship_Power.png" id="1_vcyby"]
+[ext_resource type="Texture2D" uid="uid://nxj2vhnh6uq0" path="res://Meateroid-Sprites/Ship_Engine.png" id="2_ar6wn"]
+[ext_resource type="Texture2D" uid="uid://doj8qopvept18" path="res://Meateroid-Sprites/Ship_Head.png" id="3_da0ye"]
+[ext_resource type="Texture2D" uid="uid://b4dikm8v15nsf" path="res://Meateroid-Sprites/Ship_LeftWing.png" id="4_jtn5j"]
+[ext_resource type="Texture2D" uid="uid://bnadgey1jexlr" path="res://Meateroid-Sprites/Ship_RightWing.png" id="5_bm5um"]
+[ext_resource type="Texture2D" uid="uid://b555auw4w38ku" path="res://Meateroid-Sprites/Ship_Gun.png" id="7_4uhoi"]
+[ext_resource type="Script" uid="uid://ddlgmx3vsvjf2" path="res://EngineAnim.cs" id="8_da0ye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ljl2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtn5j"]
+atlas = ExtResource("2_ar6wn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm5um"]
+atlas = ExtResource("2_ar6wn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uhoi"]
+atlas = ExtResource("2_ar6wn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq6i8"]
+atlas = ExtResource("2_ar6wn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bubxp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtn5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm5um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uhoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq6i8")
+}],
+"loop": true,
+"name": &"Engine",
+"speed": 5.0
+}]
 
 [node name="Node2D" type="Node2D" unique_id=1939869885]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1139810297]
 position = Vector2(504, 255)
+mass = 2.637
 gravity_scale = 0.0
+linear_damp = 0.85
+angular_damp = 12.75
 script = ExtResource("1_6ljl2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1366252526]
-scale = Vector2(4, 4)
+position = Vector2(0.5, 0.5)
+scale = Vector2(2.5, 2.5)
 shape = SubResource("RectangleShape2D_6ljl2")
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=1414661612]
+[node name="ShipEngine" type="Sprite2D" parent="RigidBody2D" unique_id=1088958306]
 texture_filter = 1
-scale = Vector2(4, 4)
+position = Vector2(-0.32000732, 40.5)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_ar6wn")
+region_enabled = true
+region_rect = Rect2(0, 0, 31.743866, 32)
+
+[node name="ShipHead" type="Sprite2D" parent="RigidBody2D" unique_id=1854789492]
+texture_filter = 1
+position = Vector2(0, -19.5)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_da0ye")
+
+[node name="ShipLeftWing" type="Sprite2D" parent="RigidBody2D" unique_id=1855896092]
+texture_filter = 1
+position = Vector2(-20, -2)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_jtn5j")
+
+[node name="ShipRightWing" type="Sprite2D" parent="RigidBody2D" unique_id=493275665]
+texture_filter = 1
+position = Vector2(40, -2)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_bm5um")
+
+[node name="ShipPower" type="Sprite2D" parent="RigidBody2D" unique_id=1414661612]
+texture_filter = 1
+position = Vector2(0, 0.5)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_vcyby")
+
+[node name="ShipGun" type="Sprite2D" parent="RigidBody2D" unique_id=1290089781]
+texture_filter = 1
+position = Vector2(12.049988, -39.5)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_4uhoi")
+region_enabled = true
+region_rect = Rect2(0, 0, 25.646957, 32)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2143177444]
+texture_filter = 1
+position = Vector2(654, 257)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_bubxp")
+animation = &"Engine"
+script = ExtResource("8_da0ye")

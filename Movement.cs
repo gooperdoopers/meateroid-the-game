@@ -3,20 +3,33 @@ using System;
 
 public partial class Movement : RigidBody2D
 {
-    float torque_speed = 3500 * 100;
-    float force_speed = 200;
+    float torqueSpeed = 6500f * 1000f;
+    float maxTorque = 0f;
+    float forceSpeed = 1500f;
+    float maxSpeed = 350f;
     public override void _Process(double delta)
     {
-        float force_direction = Input.GetAxis("force_foreward", "force_back");
-        GD.Print(force_direction * force_direction * force_speed * (float)delta);
+        float forceDirection = Input.GetAxis("force_foreward", "force_back");
+        GD.Print(forceDirection * forceDirection * forceSpeed * (float)delta);
     }
 
     public override void _PhysicsProcess(double delta)
     {
         float force = Input.GetAxis("force_foreward", "force_back");
-        Vector2 force_direction = Transform.Y;
-        float rot_direction = Input.GetAxis("rot_left", "rot_right");
-        ApplyTorque(rot_direction * torque_speed * (float)delta);
-        ApplyCentralImpulse(force * force_direction * force_speed * (float)delta);
+        Vector2 forceDirection = Transform.Y;
+        float torqueDirection = Input.GetAxis("rot_left", "rot_right");
+        ApplyTorque(torqueDirection * torqueSpeed * (float)delta);
+        ApplyCentralImpulse(force * forceDirection * forceSpeed * (float)delta);
+        
     }
+
+    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+    {
+        Vector2 linearVelocity = state.LinearVelocity;
+        if (linearVelocity.Length() > maxSpeed)
+        {
+            state.LinearVelocity = linearVelocity.Normalized() * maxSpeed;
+        }
+    }
+
 }

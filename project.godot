@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="meateroid"
-run/main_scene="uid://b8l2no8l3jeax"
+run/main_scene="uid://bp0w1xihectj5"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
